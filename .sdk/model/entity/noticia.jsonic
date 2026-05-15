@@ -1,0 +1,84 @@
+# Entity: noticia
+
+main: kit: entity: noticia: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "description"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "image"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "link"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "site_icon"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "title"
+      req: true
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "noticia"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: true
+                kind: "query"
+                name: "all"
+                orig: "all"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: 10
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/noticias/"
+          parts: [
+            "api"
+            "noticias"
+          ]
+          select: {
+            exist: [
+              "all"
+              "limit"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

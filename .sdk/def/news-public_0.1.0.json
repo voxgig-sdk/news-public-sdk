@@ -1,0 +1,139 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "News Public API",
+    "description": "This API provides access to the latest news articles, allowing users to fetch and retrieve news data programmatically. It is built using Python REST Framework and is available for public use.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "API Support",
+      "url": "https://news-public-api.onrender.com/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://news-public-api.onrender.com",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/api/noticias/": {
+      "get": {
+        "summary": "Get news articles",
+        "description": "Retrieve news articles with optional filtering by limit or get all articles",
+        "operationId": "getNewsArticles",
+        "tags": [
+          "News"
+        ],
+        "parameters": [
+          {
+            "name": "all",
+            "in": "query",
+            "description": "Set to 'true' to retrieve all news articles",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "example": true
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Limit the number of news articles returned",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "example": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with news articles",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NewsArticle"
+                  }
+                },
+                "examples": {
+                  "success": {
+                    "summary": "Example response with news articles",
+                    "value": [
+                      {
+                        "title": "Título de la noticia",
+                        "description": "Descripción de la noticia",
+                        "site_icon": "https://example.com/icon.png",
+                        "link": "https://example.com/article",
+                        "image": "https://example.com/image.jpg"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid parameters"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "NewsArticle": {
+        "type": "object",
+        "description": "A news article object containing details about a news story",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title of the news article",
+            "example": "Título de la noticia"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description or summary of the news article",
+            "example": "Descripción de la noticia"
+          },
+          "site_icon": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL of the site icon",
+            "example": "https://example.com/icon.png"
+          },
+          "link": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL of the full news article",
+            "example": "https://example.com/article"
+          },
+          "image": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL of the article image",
+            "example": "https://example.com/image.jpg"
+          }
+        },
+        "required": [
+          "title",
+          "description",
+          "site_icon",
+          "link",
+          "image"
+        ]
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "News",
+      "description": "Operations related to news articles"
+    }
+  ]
+}

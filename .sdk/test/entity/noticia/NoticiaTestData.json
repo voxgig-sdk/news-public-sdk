@@ -1,0 +1,38 @@
+{
+  "existing": {
+    "noticia": {
+      "NOTICIA00": {
+        "description": "s32",
+        "image": "s33",
+        "link": "s34",
+        "site_icon": "s35",
+        "title": "s36"
+      },
+      "NOTICIA01": {
+        "description": "s64",
+        "image": "s65",
+        "link": "s66",
+        "site_icon": "s67",
+        "title": "s68"
+      },
+      "NOTICIA02": {
+        "description": "s96",
+        "image": "s97",
+        "link": "s98",
+        "site_icon": "s99",
+        "title": "s9a"
+      }
+    }
+  },
+  "new": {
+    "noticia": {
+      "noticia_ref01": {
+        "description": "sc8",
+        "image": "sc9",
+        "link": "sca",
+        "site_icon": "scb",
+        "title": "scc"
+      }
+    }
+  }
+}

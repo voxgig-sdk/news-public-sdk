@@ -1,0 +1,22 @@
+# BasicNoticiaFlow
+
+main: kit: flow: BasicNoticiaFlow:
+{
+  entity: "noticia",
+  kind: "basic",
+  name: "BasicNoticiaFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "noticia_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicNoticiaFlow"
+}
