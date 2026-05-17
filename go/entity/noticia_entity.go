@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/news-public-sdk/core"
+	"github.com/voxgig-sdk/news-public-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/news-public-sdk/go/utility/struct"
 )
 
 type NoticiaEntity struct {

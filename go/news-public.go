@@ -1,10 +1,10 @@
 package voxgignewspublicsdk
 
 import (
-	"github.com/voxgig-sdk/news-public-sdk/core"
-	"github.com/voxgig-sdk/news-public-sdk/entity"
-	"github.com/voxgig-sdk/news-public-sdk/feature"
-	_ "github.com/voxgig-sdk/news-public-sdk/utility"
+	"github.com/voxgig-sdk/news-public-sdk/go/core"
+	"github.com/voxgig-sdk/news-public-sdk/go/entity"
+	"github.com/voxgig-sdk/news-public-sdk/go/feature"
+	_ "github.com/voxgig-sdk/news-public-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/news-public-sdk"
-	"github.com/voxgig-sdk/news-public-sdk/core"
+	sdk "github.com/voxgig-sdk/news-public-sdk/go"
+	"github.com/voxgig-sdk/news-public-sdk/go/core"
 )
 
 func TestNoticiaDirect(t *testing.T) {

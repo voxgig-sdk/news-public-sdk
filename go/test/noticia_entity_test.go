@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/news-public-sdk"
-	"github.com/voxgig-sdk/news-public-sdk/core"
+	sdk "github.com/voxgig-sdk/news-public-sdk/go"
+	"github.com/voxgig-sdk/news-public-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/news-public-sdk/go/utility/struct"
 )
 
 func TestNoticiaEntity(t *testing.T) {
