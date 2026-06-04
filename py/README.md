@@ -23,12 +23,9 @@ loading a specific record.
 ### 1. Create a client
 
 ```python
-import os
 from newspublic_sdk import NewsPublicSDK
 
-client = NewsPublicSDK({
-    "apikey": os.environ.get("NEWS-PUBLIC_APIKEY"),
-})
+client = NewsPublicSDK({})
 ```
 
 ### 2. List noticias
@@ -121,7 +118,6 @@ Create a `.env.local` file at the project root:
 
 ```
 NEWS-PUBLIC_TEST_LIVE=TRUE
-NEWS-PUBLIC_APIKEY=<your-key>
 ```
 
 Then run:
@@ -145,7 +141,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `str` | API key for authentication. |
 | `base` | `str` | Base URL of the API server. |
 | `prefix` | `str` | URL path prefix prepended to all requests. |
 | `suffix` | `str` | URL path suffix appended to all requests. |

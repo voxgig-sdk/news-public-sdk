@@ -62,14 +62,12 @@ def noticia_direct_setup(mockres)
   env = Runner.env_override({
     "NEWSPUBLIC_TEST_NOTICIA_ENTID" => {},
     "NEWSPUBLIC_TEST_LIVE" => "FALSE",
-    "NEWSPUBLIC_APIKEY" => "NONE",
   })
 
   live = env["NEWSPUBLIC_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
-      "apikey" => env["NEWSPUBLIC_APIKEY"],
     }
     client = NewsPublicSDK.new(merged_opts)
     return {

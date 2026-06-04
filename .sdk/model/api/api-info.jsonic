@@ -17,8 +17,22 @@ main: {
       ]
       title: "News Public API"
       version: "1.0.0"
+      tagline: "Fetch latest news articles as JSON from a Django REST Framework backend"
+      homepage: "https://news-public-api.onrender.com"
+      docs_url: "https://freepublicapis.com/news-public-api"
+      about_md: `News Public API is a small, free public endpoint that serves news articles as JSON. It is built on Python with Django REST Framework and hosted on Render, with a community catalogue page on [Free Public APIs](https://freepublicapis.com/news-public-api).
+
+What you get from the API:
+
+- A list of recent news items via \`GET /api/noticias/\`
+- Bulk fetch with \`?all=true\` to retrieve all available articles
+- Pagination-style limiting with \`?limit=<n>\` (for example, \`?limit=50\`)
+
+Operational notes: the service has been observed to be intermittent on its free Render hosting and CORS is not enabled, so direct browser-side calls from another origin may be blocked. No authentication is documented.`
+      entity_desc: {
+        noticia: "A news article resource exposed at `GET /api/noticias/`, supporting `?all=true` and `?limit=<n>` query parameters."
+      }
+      auth: false
     }
   }
-}
-
 }
