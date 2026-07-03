@@ -92,6 +92,7 @@ def _noticia_basic_setup(extra):
         "NEWSPUBLIC_TEST_NOTICIA_ENTID": idmap,
         "NEWSPUBLIC_TEST_LIVE": "FALSE",
         "NEWSPUBLIC_TEST_EXPLAIN": "FALSE",
+        "NEWSPUBLIC_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,6 +103,7 @@ def _noticia_basic_setup(extra):
     if env.get("NEWSPUBLIC_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("NEWSPUBLIC_APIKEY"),
             },
             extra or {},
         ])

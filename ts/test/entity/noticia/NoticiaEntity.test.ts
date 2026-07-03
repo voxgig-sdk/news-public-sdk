@@ -113,6 +113,7 @@ function basicSetup(extra?: any) {
     'NEWS_PUBLIC_TEST_NOTICIA_ENTID': idmap,
     'NEWS_PUBLIC_TEST_LIVE': 'FALSE',
     'NEWS_PUBLIC_TEST_EXPLAIN': 'FALSE',
+    'NEWS_PUBLIC_APIKEY': 'NONE',
   })
 
   idmap = env['NEWS_PUBLIC_TEST_NOTICIA_ENTID']
@@ -122,6 +123,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new NewsPublicSDK(merge([
       {
+        apikey: env.NEWS_PUBLIC_APIKEY,
       },
       extra
     ]))

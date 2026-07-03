@@ -63,12 +63,14 @@ function noticia_direct_setup(mockres)
   local env = runner.env_override({
     ["NEWSPUBLIC_TEST_NOTICIA_ENTID"] = {},
     ["NEWSPUBLIC_TEST_LIVE"] = "FALSE",
+    ["NEWSPUBLIC_APIKEY"] = "NONE",
   })
 
   local live = env["NEWSPUBLIC_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["NEWSPUBLIC_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

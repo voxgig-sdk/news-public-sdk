@@ -119,6 +119,7 @@ func noticiaBasicSetup(extra map[string]any) *entityTestSetup {
 		"NEWSPUBLIC_TEST_NOTICIA_ENTID": idmap,
 		"NEWSPUBLIC_TEST_LIVE":      "FALSE",
 		"NEWSPUBLIC_TEST_EXPLAIN":   "FALSE",
+		"NEWSPUBLIC_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["NEWSPUBLIC_TEST_NOTICIA_ENTID"])
@@ -129,6 +130,7 @@ func noticiaBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["NEWSPUBLIC_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["NEWSPUBLIC_APIKEY"],
 			},
 			extra,
 		})

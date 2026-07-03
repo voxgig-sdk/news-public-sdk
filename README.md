@@ -1,20 +1,8 @@
 # NewsPublic SDK
 
-Fetch latest news articles as JSON from a Django REST Framework backend
+News Public API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About News Public API
-
-News Public API is a small, free public endpoint that serves news articles as JSON. It is built on Python with Django REST Framework and hosted on Render, with a community catalogue page on [Free Public APIs](https://freepublicapis.com/news-public-api).
-
-What you get from the API:
-
-- A list of recent news items via `GET /api/noticias/`
-- Bulk fetch with `?all=true` to retrieve all available articles
-- Pagination-style limiting with `?limit=<n>` (for example, `?limit=50`)
-
-Operational notes: the service has been observed to be intermittent on its free Render hosting and CORS is not enabled, so direct browser-side calls from another origin may be blocked. No authentication is documented.
 
 ## Try it
 
@@ -48,29 +36,31 @@ gem install news-public-sdk
 luarocks install news-public-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { NewsPublicSDK } from 'news-public'
 
-const client = new NewsPublicSDK({})
+const client = new NewsPublicSDK({
+  apikey: process.env.NEWS-PUBLIC_APIKEY,
+})
 
 // List all noticias
 const noticias = await client.Noticia().list()
+console.log(noticias.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -100,7 +90,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Noticia** | A news article resource exposed at `GET /api/noticias/`, supporting `?all=true` and `?limit=<n>` query parameters. | `/api/noticias/` |
+| **Noticia** |  | `/api/noticias/` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -110,12 +100,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from newspublic_sdk import NewsPublicSDK
 
-client = NewsPublicSDK({})
+client = NewsPublicSDK({
+    "apikey": os.environ.get("NEWS-PUBLIC_APIKEY"),
+})
 
 # List all noticias
-noticias, err = client.Noticia(None).list(None, None)
+noticias, err = client.Noticia().list()
+print(noticias)
 ```
 
 ### PHP
@@ -124,10 +118,13 @@ noticias, err = client.Noticia(None).list(None, None)
 <?php
 require_once 'newspublic_sdk.php';
 
-$client = new NewsPublicSDK([]);
+$client = new NewsPublicSDK([
+    "apikey" => getenv("NEWS-PUBLIC_APIKEY"),
+]);
 
 // List all noticias
-[$noticias, $err] = $client->Noticia(null)->list(null, null);
+[$noticias, $err] = $client->Noticia()->list();
+print_r($noticias);
 ```
 
 ### Golang
@@ -135,10 +132,13 @@ $client = new NewsPublicSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/news-public-sdk/go"
 
-client := sdk.NewNewsPublicSDK(map[string]any{})
+client := sdk.NewNewsPublicSDK(map[string]any{
+    "apikey": os.Getenv("NEWS-PUBLIC_APIKEY"),
+})
 
 // List all noticias
 noticias, err := client.Noticia(nil).List(nil, nil)
+fmt.Println(noticias)
 ```
 
 ### Ruby
@@ -146,10 +146,13 @@ noticias, err := client.Noticia(nil).List(nil, nil)
 ```ruby
 require_relative "NewsPublic_sdk"
 
-client = NewsPublicSDK.new({})
+client = NewsPublicSDK.new({
+  "apikey" => ENV["NEWS-PUBLIC_APIKEY"],
+})
 
 # List all noticias
-noticias, err = client.Noticia(nil).list(nil, nil)
+noticias, err = client.Noticia().list
+puts noticias
 ```
 
 ### Lua
@@ -157,10 +160,13 @@ noticias, err = client.Noticia(nil).list(nil, nil)
 ```lua
 local sdk = require("news-public_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("NEWS-PUBLIC_APIKEY"),
+})
 
 -- List all noticias
-local noticias, err = client:Noticia(nil):list(nil, nil)
+local noticias, err = client:Noticia():list()
+print(noticias)
 ```
 
 ## Unit testing in offline mode
@@ -179,25 +185,21 @@ const result = await client.Noticia().load({ id: 'test01' })
 ### Python
 
 ```python
-client = NewsPublicSDK.test(None, None)
-result, err = client.Noticia(None).load(
-    {"id": "test01"}, None
-)
+client = NewsPublicSDK.test()
+result, err = client.Noticia().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = NewsPublicSDK::test(null, null);
-[$result, $err] = $client->Noticia(null)->load(
-    ["id" => "test01"], null
-);
+$client = NewsPublicSDK::test();
+[$result, $err] = $client->Noticia()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Noticia(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -206,19 +208,15 @@ result, err := client.Noticia(nil).Load(
 ### Ruby
 
 ```ruby
-client = NewsPublicSDK.test(nil, nil)
-result, err = client.Noticia(nil).load(
-  { "id" => "test01" }, nil
-)
+client = NewsPublicSDK.test
+result, err = client.Noticia().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Noticia(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Noticia():load({ id = "test01" })
 ```
 
 ## How it works
@@ -322,11 +320,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the News Public API
-
-- Upstream: [https://news-public-api.onrender.com](https://news-public-api.onrender.com)
-- API docs: [https://freepublicapis.com/news-public-api](https://freepublicapis.com/news-public-api)
 
 ---
 
