@@ -1,8 +1,17 @@
 {
   "name": "voxgig-sdk/news-public",
-  "description": "NewsPublic SDK for PHP",
+  "description": "Unofficial generated PHP SDK for the News Public public API. Not affiliated with or endorsed by the upstream API provider.",
   "type": "library",
+  "keywords": ["voxgig", "sdk", "generated-sdk", "openapi", "api-client", "news-public"],
+  "homepage": "https://github.com/voxgig-sdk/news-public-sdk",
   "license": "MIT",
+  "authors": [
+    { "name": "Voxgig", "homepage": "https://voxgig.com" }
+  ],
+  "support": {
+    "issues": "https://github.com/voxgig-sdk/news-public-sdk/issues",
+    "source": "https://github.com/voxgig-sdk/news-public-sdk"
+  },
   "minimum-stability": "stable",
   "require": {
     "php": ">=8.2"

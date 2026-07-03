@@ -10,13 +10,13 @@ The Ruby SDK for the NewsPublic API — an entity-oriented client using idiomati
 
 ## Install
 ```bash
-gem install news-public-sdk
+gem install voxgig-sdk-news-public
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "news-public-sdk"
+gem "voxgig-sdk-news-public"
 ```
 
 Then run:

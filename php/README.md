@@ -10,7 +10,7 @@ The PHP SDK for the NewsPublic API — an entity-oriented client using PHP conve
 
 ## Install
 ```bash
-composer require voxgig/news-public-sdk
+composer require voxgig-sdk/news-public
 ```
 
 

@@ -10,7 +10,7 @@ The Python SDK for the NewsPublic API — an entity-oriented client following Py
 
 ## Install
 ```bash
-pip install news-public-sdk
+pip install voxgig-sdk-news-public
 ```
 
 Or install from source:

@@ -10,7 +10,7 @@ The Lua SDK for the NewsPublic API — an entity-oriented client using Lua conve
 
 ## Install
 ```bash
-luarocks install news-public-sdk
+luarocks install voxgig-sdk-news-public
 ```
 
 If the module is not yet published, add the source directory to
