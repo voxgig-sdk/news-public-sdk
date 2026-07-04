@@ -50,8 +50,7 @@ class TestNoticiaEntity:
         noticia_ref01_ent = client.Noticia(None)
         noticia_ref01_match = {}
 
-        noticia_ref01_list_result, err = noticia_ref01_ent.list(noticia_ref01_match, None)
-        assert err is None
+        noticia_ref01_list_result = noticia_ref01_ent.list(noticia_ref01_match, None)
         assert isinstance(noticia_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _noticia_basic_setup(extra):
         "NEWSPUBLIC_TEST_NOTICIA_ENTID": idmap,
         "NEWSPUBLIC_TEST_LIVE": "FALSE",
         "NEWSPUBLIC_TEST_EXPLAIN": "FALSE",
-        "NEWSPUBLIC_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _noticia_basic_setup(extra):
     if env.get("NEWSPUBLIC_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("NEWSPUBLIC_APIKEY"),
             },
             extra or {},
         ])

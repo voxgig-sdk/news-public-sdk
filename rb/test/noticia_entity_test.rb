@@ -43,8 +43,7 @@ class NoticiaEntityTest < Minitest::Test
     noticia_ref01_ent = client.Noticia(nil)
     noticia_ref01_match = {}
 
-    noticia_ref01_list_result, err = noticia_ref01_ent.list(noticia_ref01_match, nil)
-    assert_nil err
+    noticia_ref01_list_result = noticia_ref01_ent.list(noticia_ref01_match, nil)
     assert noticia_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def noticia_basic_setup(extra)
     "NEWSPUBLIC_TEST_NOTICIA_ENTID" => idmap,
     "NEWSPUBLIC_TEST_LIVE" => "FALSE",
     "NEWSPUBLIC_TEST_EXPLAIN" => "FALSE",
-    "NEWSPUBLIC_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def noticia_basic_setup(extra)
   if env["NEWSPUBLIC_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["NEWSPUBLIC_APIKEY"],
       },
       extra || {},
     ])

@@ -92,7 +92,6 @@ function noticia_basic_setup(extra)
     ["NEWSPUBLIC_TEST_NOTICIA_ENTID"] = idmap,
     ["NEWSPUBLIC_TEST_LIVE"] = "FALSE",
     ["NEWSPUBLIC_TEST_EXPLAIN"] = "FALSE",
-    ["NEWSPUBLIC_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -104,7 +103,6 @@ function noticia_basic_setup(extra)
   if env["NEWSPUBLIC_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["NEWSPUBLIC_APIKEY"],
       },
       extra or {},
     })

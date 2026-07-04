@@ -245,6 +245,9 @@ func (sdk *NewsPublicSDK) Direct(fetchargs map[string]any) (map[string]any, erro
 }
 
 
+// Noticia returns a Noticia entity bound to this client.
+// Idiomatic usage: client.Noticia(nil).List(nil, nil) or
+// client.Noticia(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *NewsPublicSDK) Noticia(data map[string]any) NewsPublicEntity {
 	return NewNoticiaEntityFunc(sdk, data)
 }

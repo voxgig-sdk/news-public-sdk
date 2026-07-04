@@ -4,6 +4,7 @@
 main: {
   kit: {
     info: {
+      auth: false
       contact: {
         name: "API Support"
         url: "https://news-public-api.onrender.com/"

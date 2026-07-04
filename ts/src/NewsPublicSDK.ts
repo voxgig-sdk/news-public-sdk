@@ -2,6 +2,8 @@
 
 import { NoticiaEntity } from './entity/NoticiaEntity'
 
+export type * from './NewsPublicTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -202,6 +204,14 @@ class NewsPublicSDK {
 
 
 
+  _noticia?: NoticiaEntity
+
+  // Idiomatic facade: `client.noticia.list()` / `client.noticia.load({ id })`.
+  get noticia(): NoticiaEntity {
+    return (this._noticia ??= new NoticiaEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.noticia` instead. */
   Noticia(data?: any) {
     const self = this
     return new NoticiaEntity(self,data)

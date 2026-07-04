@@ -93,14 +93,12 @@ func noticiaDirectSetup(mockres any) *noticiaDirectSetupResult {
 	env := envOverride(map[string]any{
 		"NEWSPUBLIC_TEST_NOTICIA_ENTID": map[string]any{},
 		"NEWSPUBLIC_TEST_LIVE":    "FALSE",
-		"NEWSPUBLIC_APIKEY":       "NONE",
 	})
 
 	live := env["NEWSPUBLIC_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["NEWSPUBLIC_APIKEY"],
 		}
 		client := sdk.NewNewsPublicSDK(mergedOpts)
 

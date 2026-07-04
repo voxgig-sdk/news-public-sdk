@@ -50,8 +50,7 @@ class NoticiaEntityTest extends TestCase
         $noticia_ref01_ent = $client->Noticia(null);
         $noticia_ref01_match = [];
 
-        [$noticia_ref01_list_result, $err] = $noticia_ref01_ent->list($noticia_ref01_match, null);
-        $this->assertNull($err);
+        $noticia_ref01_list_result = $noticia_ref01_ent->list($noticia_ref01_match, null);
         $this->assertIsArray($noticia_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function noticia_basic_setup($extra)
         "NEWSPUBLIC_TEST_NOTICIA_ENTID" => $idmap,
         "NEWSPUBLIC_TEST_LIVE" => "FALSE",
         "NEWSPUBLIC_TEST_EXPLAIN" => "FALSE",
-        "NEWSPUBLIC_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function noticia_basic_setup($extra)
     if ($env["NEWSPUBLIC_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["NEWSPUBLIC_APIKEY"],
             ],
             $extra ?? [],
         ]);

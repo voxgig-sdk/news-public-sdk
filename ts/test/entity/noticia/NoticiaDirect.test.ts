@@ -79,14 +79,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'NEWSPUBLIC_TEST_NOTICIA_ENTID': {},
     'NEWSPUBLIC_TEST_LIVE': 'FALSE',
-    'NEWSPUBLIC_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.NEWSPUBLIC_TEST_LIVE
 
   if (live) {
     const client = new NewsPublicSDK({
-      apikey: env.NEWSPUBLIC_APIKEY,
     })
 
     let idmap: any = env['NEWSPUBLIC_TEST_NOTICIA_ENTID']

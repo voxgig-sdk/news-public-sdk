@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch NoticiaListMatch
+---@param ctrl? table
+---@return Noticia[]
+---@return string? err
 function NoticiaEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -84,7 +83,7 @@ same parameters as `direct()`.
 ## NoticiaEntity
 
 ```lua
-local noticia = client:Noticia(nil)
+local noticia = client:noticia(nil)
 ```
 
 ### Fields
@@ -104,7 +103,7 @@ local noticia = client:Noticia(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Noticia():list()
+local results, err = client:noticia():list()
 ```
 
 ### Common Methods

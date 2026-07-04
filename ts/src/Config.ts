@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://news-public-api.onrender.com',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },

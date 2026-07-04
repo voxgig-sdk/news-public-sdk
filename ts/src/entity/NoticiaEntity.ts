@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Noticia,
+  NoticiaListMatch,
+} from '../NewsPublicTypes'
 
 // TODO: needs Entity superclass
-class NoticiaEntity extends NewsPublicEntityBase {
+class NoticiaEntity extends NewsPublicEntityBase<Noticia> {
 
   constructor(client: NewsPublicSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class NoticiaEntity extends NewsPublicEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: NoticiaListMatch, ctrl?: Control): Promise<Noticia[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class NoticiaEntity extends NewsPublicEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Noticia[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

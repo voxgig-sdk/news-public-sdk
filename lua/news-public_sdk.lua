@@ -244,6 +244,19 @@ end
 
 
 
+-- Idiomatic facade: client:noticia():list() / client:noticia():load({ id = ... })
+function NewsPublicSDK:noticia(data)
+  local EntityMod = require("entity.noticia_entity")
+  if data == nil then
+    if self._noticia == nil then
+      self._noticia = EntityMod.new(self, nil)
+    end
+    return self._noticia
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:noticia() instead.
 function NewsPublicSDK:Noticia(data)
   local EntityMod = require("entity.noticia_entity")
   return EntityMod.new(self, data)
