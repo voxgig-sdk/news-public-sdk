@@ -31,14 +31,16 @@ from newspublic_sdk import NewsPublicSDK
 client = NewsPublicSDK()
 ```
 
-### 2. List noticias
+### 2. List noticia records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.noticia.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    noticias = client.Noticia().list({})
+    for noticia in noticias:
+        print(noticia)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -86,8 +88,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = NewsPublicSDK.test()
 
-result = client.noticia.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+noticia = client.Noticia().load({"id": "test01"})
+# noticia contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -224,7 +227,7 @@ API path: `/api/noticias/`
 
 ### Noticia
 
-Create an instance: `const noticia = client.noticia`
+Create an instance: `noticia = client.Noticia()`
 
 #### Operations
 
@@ -244,8 +247,8 @@ Create an instance: `const noticia = client.noticia`
 
 #### Example: List
 
-```ts
-const noticias = await client.noticia.list()
+```python
+noticias = client.Noticia().list({})
 ```
 
 
@@ -319,7 +322,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-noticia = client.noticia
+noticia = client.Noticia()
 noticia.load({"id": "example_id"})
 
 # noticia.data_get() now returns the loaded noticia data

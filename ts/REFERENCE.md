@@ -109,7 +109,7 @@ Alias for `NewsPublicSDK.test()`.
 ## NoticiaEntity
 
 ```ts
-const noticia = client.noticia
+const noticia = client.Noticia()
 ```
 
 ### Fields
@@ -129,7 +129,7 @@ const noticia = client.noticia
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.noticia.list()
+const results = await client.Noticia().list()
 ```
 
 ### Common Methods

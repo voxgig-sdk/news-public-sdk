@@ -26,9 +26,11 @@ import { NewsPublicSDK } from '@voxgig-sdk/news-public'
 
 const client = new NewsPublicSDK()
 
-// List all noticias
-const noticias = await client.noticia.list()
-console.log(noticias.data)
+// List all noticias (returns Noticia[])
+const noticias = await client.Noticia().list()
+for (const noticia of noticias) {
+  console.log(noticia)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -83,9 +85,10 @@ from newspublic_sdk import NewsPublicSDK
 
 client = NewsPublicSDK()
 
-# List all noticias
-noticias = client.noticia.list()
-print(noticias)
+# List all noticias (returns a list, raises on error)
+noticias = client.Noticia().list({})
+for noticia in noticias:
+    print(noticia)
 ```
 
 ### PHP
@@ -96,8 +99,8 @@ require_once 'newspublic_sdk.php';
 
 $client = new NewsPublicSDK();
 
-// List all noticias (throws on error)
-$noticias = $client->noticia()->list();
+// List all noticias (returns an array; throws on error)
+$noticias = $client->Noticia()->list();
 print_r($noticias);
 ```
 
@@ -120,8 +123,8 @@ require_relative "NewsPublic_sdk"
 
 client = NewsPublicSDK.new
 
-# List all noticias
-noticias = client.noticia.list
+# List all noticias (returns an Array; raises on error)
+noticias = client.Noticia.list
 puts noticias
 ```
 
@@ -133,7 +136,7 @@ local sdk = require("news-public_sdk")
 local client = sdk.new()
 
 -- List all noticias
-local noticias, err = client:noticia():list()
+local noticias, err = client:Noticia():list()
 print(noticias)
 ```
 
@@ -146,22 +149,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = NewsPublicSDK.test()
-const result = await client.noticia.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const noticia = await client.Noticia().load({ id: 'test01' })
+// noticia is a bare Noticia populated with mock data
+console.log(noticia)
 ```
 
 ### Python
 
 ```python
 client = NewsPublicSDK.test()
-result = client.noticia.load({"id": "test01"})
+noticia = client.Noticia().load({"id": "test01"})
+print(noticia)
 ```
 
 ### PHP
 
 ```php
-$client = NewsPublicSDK::test();
-$result = $client->noticia()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = NewsPublicSDK::test([
+    "entity" => ["noticia" => ["test01" => ["id" => "test01"]]],
+]);
+$noticia = $client->Noticia()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -176,15 +184,18 @@ result, err := client.Noticia(nil).Load(
 ### Ruby
 
 ```ruby
-client = NewsPublicSDK.test
-result = client.noticia.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = NewsPublicSDK.test({
+  "entity" => { "noticia" => { "test01" => { "id" => "test01" } } },
+})
+noticia = client.Noticia.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:noticia():load({ id = "test01" })
+local result, err = client:Noticia():load({ id = "test01" })
 ```
 
 ## How it works
@@ -232,6 +243,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

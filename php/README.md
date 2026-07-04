@@ -29,18 +29,16 @@ require_once 'newspublic_sdk.php';
 $client = new NewsPublicSDK();
 ```
 
-### 2. List noticias
+### 2. List noticia records
 
 ```php
 try {
-    $result = $client->noticia()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Noticia records — iterate directly.
+    $noticias = $client->Noticia()->list();
+    foreach ($noticias as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -86,13 +84,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = NewsPublicSDK::test();
+$client = NewsPublicSDK::test([
+    "entity" => ["noticia" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->noticia()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$noticia = $client->Noticia()->load(["id" => "test01"]);
+print_r($noticia);
 ```
 
 ### Use a custom fetch function
@@ -232,7 +234,7 @@ API path: `/api/noticias/`
 
 ### Noticia
 
-Create an instance: `const noticia = client.noticia`
+Create an instance: `$noticia = $client->Noticia();`
 
 #### Operations
 
@@ -252,8 +254,9 @@ Create an instance: `const noticia = client.noticia`
 
 #### Example: List
 
-```ts
-const noticias = await client.noticia.list()
+```php
+// list() returns an array of Noticia records (throws on error).
+$noticias = $client->Noticia()->list();
 ```
 
 
@@ -328,7 +331,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$noticia = $client->noticia();
+$noticia = $client->Noticia();
 $noticia->load(["id" => "example_id"]);
 
 // $noticia->dataGet() now returns the loaded noticia data

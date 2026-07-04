@@ -86,7 +86,7 @@ same parameters as `direct()`. Raises on error.
 ## NoticiaEntity
 
 ```ruby
-noticia = client.noticia
+noticia = client.Noticia
 ```
 
 ### Fields
@@ -106,7 +106,7 @@ noticia = client.noticia
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.noticia.list(nil)
+results = client.Noticia.list(nil)
 ```
 
 ### Common Methods

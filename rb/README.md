@@ -28,16 +28,14 @@ require_relative "NewsPublic_sdk"
 client = NewsPublicSDK.new
 ```
 
-### 2. List noticias
+### 2. List noticia records
 
 ```ruby
 begin
-  result = client.noticia.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Noticia records — iterate directly.
+  noticias = client.Noticia.list
+  noticias.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -85,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = NewsPublicSDK.test
+client = NewsPublicSDK.test({
+  "entity" => { "noticia" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.noticia.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+noticia = client.Noticia.load({ "id" => "test01" })
+puts noticia
 ```
 
 ### Use a custom fetch function
@@ -227,7 +229,7 @@ API path: `/api/noticias/`
 
 ### Noticia
 
-Create an instance: `const noticia = client.noticia`
+Create an instance: `noticia = client.Noticia`
 
 #### Operations
 
@@ -247,8 +249,9 @@ Create an instance: `const noticia = client.noticia`
 
 #### Example: List
 
-```ts
-const noticias = await client.noticia.list()
+```ruby
+# list returns an Array of Noticia records (raises on error).
+noticias = client.Noticia.list
 ```
 
 
@@ -323,7 +326,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-noticia = client.noticia
+noticia = client.Noticia
 noticia.load({ "id" => "example_id" })
 
 # noticia.data_get now returns the loaded noticia data

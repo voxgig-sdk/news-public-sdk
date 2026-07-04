@@ -208,13 +208,7 @@ class NewsPublicSDK
   end
 
 
-  # Idiomatic facade: client.noticia.list / client.noticia.load({ "id" => ... })
-  def noticia
-    require_relative 'entity/noticia_entity'
-    @noticia ||= NoticiaEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.noticia instead.
+  # Canonical facade: client.Noticia.list / client.Noticia.load({ "id" => ... })
   def Noticia(data = nil)
     require_relative 'entity/noticia_entity'
     NoticiaEntity.new(self, data)

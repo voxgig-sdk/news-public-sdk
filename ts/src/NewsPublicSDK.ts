@@ -204,14 +204,7 @@ class NewsPublicSDK {
 
 
 
-  _noticia?: NoticiaEntity
-
-  // Idiomatic facade: `client.noticia.list()` / `client.noticia.load({ id })`.
-  get noticia(): NoticiaEntity {
-    return (this._noticia ??= new NoticiaEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.noticia` instead. */
+  // Entity access: `client.Noticia().list()` / `client.Noticia().load({ id })`.
   Noticia(data?: any) {
     const self = this
     return new NoticiaEntity(self,data)

@@ -233,10 +233,10 @@ class NewsPublicSDK
 
     private $_noticia = null;
 
-    // Idiomatic facade: $client->noticia()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Noticia() (PHP method
-    // names are case-insensitive).
-    public function noticia($data = null)
+    // Canonical facade: $client->Noticia()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->noticia()
+    // resolves here too.
+    public function Noticia($data = null)
     {
         require_once __DIR__ . '/entity/noticia_entity.php';
         if ($data === null) {

@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:noticia():list() / client:noticia():load({ id = ... })
-function NewsPublicSDK:noticia(data)
+-- Idiomatic facade: client:Noticia():list() / client:Noticia():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function NewsPublicSDK:Noticia(data)
   local EntityMod = require("entity.noticia_entity")
   if data == nil then
     if self._noticia == nil then
@@ -253,12 +254,6 @@ function NewsPublicSDK:noticia(data)
     end
     return self._noticia
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:noticia() instead.
-function NewsPublicSDK:Noticia(data)
-  local EntityMod = require("entity.noticia_entity")
   return EntityMod.new(self, data)
 end
 

@@ -83,7 +83,7 @@ same parameters as `direct()`.
 ## NoticiaEntity
 
 ```lua
-local noticia = client:noticia(nil)
+local noticia = client:Noticia(nil)
 ```
 
 ### Fields
@@ -103,7 +103,7 @@ local noticia = client:noticia(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:noticia():list()
+local results, err = client:Noticia():list()
 ```
 
 ### Common Methods

@@ -220,25 +220,15 @@ class NewsPublicSDK:
         }
 
 
-    @property
-    def noticia(self):
-        """Idiomatic facade: client.noticia.list() / client.noticia.load({"id": ...})."""
-        from entity.noticia_entity import NoticiaEntity
-        cached = getattr(self, "_noticia", None)
-        if cached is None:
-            cached = NoticiaEntity(self, None)
-            self._noticia = cached
-        return cached
-
-    def Noticia(self, data=None):
-        # Deprecated: use client.noticia instead.
+    def Noticia(self, data=None) -> "NoticiaEntity":
+        """Entity factory: client.Noticia().list({}) / client.Noticia().load({"id": ...})."""
         from entity.noticia_entity import NoticiaEntity
         return NoticiaEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "NewsPublicSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -258,3 +248,9 @@ class NewsPublicSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.noticia_entity import NoticiaEntity

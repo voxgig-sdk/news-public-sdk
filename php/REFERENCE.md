@@ -85,7 +85,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## NoticiaEntity
 
 ```php
-$noticia = $client->noticia();
+$noticia = $client->Noticia();
 ```
 
 ### Fields
@@ -105,7 +105,7 @@ $noticia = $client->noticia();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->noticia()->list([]);
+$results = $client->Noticia()->list([]);
 ```
 
 ### Common Methods
