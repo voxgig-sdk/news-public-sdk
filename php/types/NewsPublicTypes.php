@@ -22,7 +22,7 @@ class Noticia
     public string $title;
 }
 
-/** Match filter for Noticia#list (any subset of Noticia fields). */
+/** Request payload for Noticia#list. */
 class NoticiaListMatch
 {
     public ?string $description = null;

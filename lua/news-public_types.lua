@@ -14,6 +14,11 @@
 ---@field title string
 
 ---@class NoticiaListMatch
+---@field description? string
+---@field image? string
+---@field link? string
+---@field site_icon? string
+---@field title? string
 
 local M = {}
 

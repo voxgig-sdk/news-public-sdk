@@ -8,7 +8,7 @@ Complete API reference for the NewsPublic Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'news-public_sdk'
+require_relative 'NewsPublic_sdk'
 
 client = NewsPublicSDK.new(options)
 ```
@@ -93,20 +93,20 @@ noticia = client.Noticia
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | Yes |  |
-| `image` | ``$STRING`` | Yes |  |
-| `link` | ``$STRING`` | Yes |  |
-| `site_icon` | ``$STRING`` | Yes |  |
-| `title` | ``$STRING`` | Yes |  |
+| `description` | `String` | Yes |  |
+| `image` | `String` | Yes |  |
+| `link` | `String` | Yes |  |
+| `site_icon` | `String` | Yes |  |
+| `title` | `String` | Yes |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Noticia.list(nil)
+results = client.Noticia.list
 ```
 
 ### Common Methods

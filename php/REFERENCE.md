@@ -8,7 +8,7 @@ Complete API reference for the NewsPublic PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/news-public_sdk.php';
+require_once __DIR__ . '/newspublic_sdk.php';
 
 $client = new NewsPublicSDK($options);
 ```
@@ -45,11 +45,11 @@ $client = NewsPublicSDK::test();
 
 Create a new `NoticiaEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): NewsPublicUtility`
 
 Return a copy of the SDK utility object.
 
@@ -92,37 +92,37 @@ $noticia = $client->Noticia();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | Yes |  |
-| `image` | ``$STRING`` | Yes |  |
-| `link` | ``$STRING`` | Yes |  |
-| `site_icon` | ``$STRING`` | Yes |  |
-| `title` | ``$STRING`` | Yes |  |
+| `description` | `string` | Yes |  |
+| `image` | `string` | Yes |  |
+| `link` | `string` | Yes |  |
+| `site_icon` | `string` | Yes |  |
+| `title` | `string` | Yes |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Noticia()->list([]);
+$results = $client->Noticia()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -131,7 +131,7 @@ Set the entity match criteria.
 Create a new `NoticiaEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

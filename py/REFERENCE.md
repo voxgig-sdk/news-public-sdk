@@ -8,7 +8,7 @@ Complete API reference for the NewsPublic Python SDK.
 ### Constructor
 
 ```python
-from news-public_sdk import NewsPublicSDK
+from newspublic_sdk import NewsPublicSDK
 
 client = NewsPublicSDK(options)
 ```
@@ -87,20 +87,20 @@ noticia = client.Noticia()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | Yes |  |
-| `image` | ``$STRING`` | Yes |  |
-| `link` | ``$STRING`` | Yes |  |
-| `site_icon` | ``$STRING`` | Yes |  |
-| `title` | ``$STRING`` | Yes |  |
+| `description` | `str` | Yes |  |
+| `image` | `str` | Yes |  |
+| `link` | `str` | Yes |  |
+| `site_icon` | `str` | Yes |  |
+| `title` | `str` | Yes |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Noticia().list({})
+results = client.Noticia().list()
 for noticia in results:
     print(noticia)
 ```

@@ -33,7 +33,7 @@ Noticia = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Noticia#list (any subset of Noticia fields).
+# Request payload for Noticia#list.
 #
 # @!attribute [rw] description
 #   @return [String, nil]

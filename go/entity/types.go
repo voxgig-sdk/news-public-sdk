@@ -17,8 +17,7 @@ type Noticia struct {
 	Title string `json:"title"`
 }
 
-// NoticiaListMatch mirrors the noticia fields as an all-optional match
-// filter (Go analog of Partial<Noticia>).
+// NoticiaListMatch is the typed request payload for Noticia.ListTyped.
 type NoticiaListMatch struct {
 	Description *string `json:"description,omitempty"`
 	Image *string `json:"image,omitempty"`

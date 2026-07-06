@@ -116,11 +116,11 @@ const noticia = client.Noticia()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | Yes |  |
-| `image` | ``$STRING`` | Yes |  |
-| `link` | ``$STRING`` | Yes |  |
-| `site_icon` | ``$STRING`` | Yes |  |
-| `title` | ``$STRING`` | Yes |  |
+| `description` | `string` | Yes |  |
+| `image` | `string` | Yes |  |
+| `link` | `string` | Yes |  |
+| `site_icon` | `string` | Yes |  |
+| `title` | `string` | Yes |  |
 
 ### Operations
 

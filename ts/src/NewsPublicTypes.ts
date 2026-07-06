@@ -13,5 +13,11 @@ export interface Noticia {
   title: string
 }
 
-export type NoticiaListMatch = Partial<Noticia>
+export interface NoticiaListMatch {
+  description?: string
+  image?: string
+  link?: string
+  site_icon?: string
+  title?: string
+}
 

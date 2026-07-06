@@ -221,7 +221,7 @@ class NewsPublicSDK:
 
 
     def Noticia(self, data=None) -> "NoticiaEntity":
-        """Entity factory: client.Noticia().list({}) / client.Noticia().load({"id": ...})."""
+        """Entity factory: client.Noticia().list() / client.Noticia().load({"id": ...})."""
         from entity.noticia_entity import NoticiaEntity
         return NoticiaEntity(self, data)
 
