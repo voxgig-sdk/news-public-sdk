@@ -16,9 +16,9 @@ main: {
           url: "https://news-public-api.onrender.com"
         }
       ]
+      summary: "This API provides access to the latest news articles, allowing users to fetch and retrieve news data programmatically."
       title: "News Public API"
       version: "1.0.0"
+      website: "https://news-public-api.onrender.com"
     }
   }
-}
-

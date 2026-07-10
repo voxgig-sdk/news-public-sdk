@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -242,14 +239,17 @@
           "url": "https://news-public-api.onrender.com/"
         },
         "description": "This API provides access to the latest news articles, allowing users to fetch and retrieve news data programmatically. It is built using Python REST Framework and is available for public use.",
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Production server",
             "url": "https://news-public-api.onrender.com"
           }
         ],
+        "summary": "This API provides access to the latest news articles, allowing users to fetch and retrieve news data programmatically.",
         "title": "News Public API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://news-public-api.onrender.com"
       },
       "option": {},
       "target": {
@@ -302,6 +302,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -352,6 +355,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
