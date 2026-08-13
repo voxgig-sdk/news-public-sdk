@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ NewsPublicUtility.registrar = ->(u) {
   u.prepare_params = NewsPublicUtilities::PrepareParams
   u.prepare_path = NewsPublicUtilities::PreparePath
   u.prepare_query = NewsPublicUtilities::PrepareQuery
+  u.graphql_body = NewsPublicUtilities::GraphqlBody
+  u.graphql_errors = NewsPublicUtilities::GraphqlErrors
   u.result_basic = NewsPublicUtilities::ResultBasic
   u.result_body = NewsPublicUtilities::ResultBody
   u.result_headers = NewsPublicUtilities::ResultHeaders

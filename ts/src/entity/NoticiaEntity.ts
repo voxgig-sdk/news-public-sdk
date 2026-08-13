@@ -37,7 +37,7 @@ class NoticiaEntity extends NewsPublicEntityBase<Noticia> {
 
 
 
-  async list(this: any, reqmatch?: NoticiaListMatch, ctrl?: Control): Promise<Noticia[]> {
+  async list(this: any, reqmatch?: NoticiaListMatch, ctrl?: Control): Promise<NoticiaEntity[]> {
 
     const utility = this._utility
 

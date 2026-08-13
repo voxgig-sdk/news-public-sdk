@@ -23,8 +23,8 @@ module NewsPublicTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("NEWSPUBLIC_TEST_LIVE")
-    override = getenv("NEWSPUBLIC_TEST_OVERRIDE")
+    live = getenv("NEWS_PUBLIC_TEST_LIVE")
+    override = getenv("NEWS_PUBLIC_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module NewsPublicTestRunner
       end
     end
 
-    explain = getenv("NEWSPUBLIC_TEST_EXPLAIN")
-    m["NEWSPUBLIC_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("NEWS_PUBLIC_TEST_EXPLAIN")
+    m["NEWS_PUBLIC_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

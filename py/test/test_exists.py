@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# NewsPublic SDK exists test
 
 import pytest
 from newspublic_sdk import NewsPublicSDK

@@ -35,7 +35,9 @@ const client = new NewsPublicSDK()
 
 ### 2. List noticia records
 
-`list()` resolves to an array of Noticia objects — iterate it directly:
+`list()` resolves to an array of Noticia ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const noticias = await client.Noticia().list()
@@ -120,7 +122,8 @@ Create a mock client for unit testing — no server required:
 const client = NewsPublicSDK.test()
 
 const noticia = await client.Noticia().list()
-// noticia is a bare entity populated with mock response data
+// noticia is the entity, populated with mock response data
+// — call noticia.data() for the record itself
 console.log(noticia)
 ```
 

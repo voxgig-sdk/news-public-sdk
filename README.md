@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = NewsPublicSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = NewsPublicSDK.test({
+  entity: {
+    noticia: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const noticias = await client.Noticia().list()
-// noticias is an array of bare Noticia records populated with mock data
+// noticias is an array of Noticia entities, populated with mock data
+// — call noticias[0].data() for the record itself
 console.log(noticias)
 ```
 
@@ -110,7 +119,7 @@ import { NewsPublicSDK } from '@voxgig-sdk/news-public'
 
 const client = new NewsPublicSDK()
 
-// List all noticias (returns Noticia[])
+// List all noticias (returns NoticiaEntity[] — .data() for the record)
 const noticias = await client.Noticia().list()
 for (const noticia of noticias) {
   console.log(noticia)
@@ -343,6 +352,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://news-public-api.onrender.com/](https://news-public-api.onrender.com/)
 

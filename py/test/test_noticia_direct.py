@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from newspublic_sdk.utility.voxgig_struct import voxgig_struct as vs
 from newspublic_sdk import NewsPublicSDK
-from core import helpers
+from newspublic_sdk.core import helpers
 from test import runner
 
 
@@ -58,11 +58,11 @@ def _noticia_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "NEWSPUBLIC_TEST_NOTICIA_ENTID": {},
-        "NEWSPUBLIC_TEST_LIVE": "FALSE",
+        "NEWS_PUBLIC_TEST_NOTICIA_ENTID": {},
+        "NEWS_PUBLIC_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("NEWSPUBLIC_TEST_LIVE") == "TRUE"
+    live = env.get("NEWS_PUBLIC_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

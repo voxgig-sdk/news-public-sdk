@@ -91,6 +91,7 @@ module NewsPublicConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/noticias/",
                   "parts" => [

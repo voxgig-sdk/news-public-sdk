@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import NewsPublicSDK
-from core.error import NewsPublicError
-from core.result import NewsPublicResult
-from core.response import NewsPublicResponse
-from core.spec import NewsPublicSpec
-from feature.base_feature import NewsPublicBaseFeature
+from projectname_sdk.core.error import NewsPublicError
+from projectname_sdk.core.result import NewsPublicResult
+from projectname_sdk.core.response import NewsPublicResponse
+from projectname_sdk.core.spec import NewsPublicSpec
+from projectname_sdk.feature.base_feature import NewsPublicBaseFeature
 
 
 def _client():

@@ -26,8 +26,8 @@ import {
 describe('NoticiaEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when NEWSPUBLIC_TEST_LIVE=TRUE.
-  afterEach(liveDelay('NEWSPUBLIC_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when NEWS_PUBLIC_TEST_LIVE=TRUE.
+  afterEach(liveDelay('NEWS_PUBLIC_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = NewsPublicSDK.test()
@@ -63,7 +63,7 @@ describe('NoticiaEntity', async () => {
     const noticia_ref01_ent = client.Noticia()
     const noticia_ref01_match: any = {}
 
-    const noticia_ref01_list = await noticia_ref01_ent.list(noticia_ref01_match)
+    const noticia_ref01_list = (await noticia_ref01_ent.list(noticia_ref01_match)).map((e: any) => e.data())
 
 
   })
