@@ -42,8 +42,8 @@ class TestNoticiaEntity:
         assert len(seen) == 3
 
         # Inbound: streaming active -> yields each item from the feature.
-        from newspublic_sdk.config import make_config
-        cfg = make_config()
+        from newspublic_sdk.config import shared_config
+        cfg = shared_config()
         if isinstance(cfg.get("feature"), dict) and "streaming" in cfg["feature"]:
             sdk = NewsPublicSDK.test(
                 seed, {"feature": {"streaming": {"active": True}}})

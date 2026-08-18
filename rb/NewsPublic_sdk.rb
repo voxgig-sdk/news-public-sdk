@@ -28,7 +28,7 @@ class NewsPublicSDK
     utility = NewsPublicUtility.new
     @_utility = utility
 
-    config = NewsPublicConfig.make_config
+    config = NewsPublicConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,
