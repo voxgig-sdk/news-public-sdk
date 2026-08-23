@@ -92,11 +92,11 @@ $noticia = $client->Noticia();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `string` | Yes |  |
-| `image` | `string` | Yes |  |
-| `link` | `string` | Yes |  |
-| `site_icon` | `string` | Yes |  |
-| `title` | `string` | Yes |  |
+| `description` | `string` | Yes | Description or summary of the news article |
+| `image` | `string` | Yes | URL of the article image |
+| `link` | `string` | Yes | URL of the full news article |
+| `site_icon` | `string` | Yes | URL of the site icon |
+| `title` | `string` | Yes | Title of the news article |
 
 ### Operations
 

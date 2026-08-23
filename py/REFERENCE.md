@@ -87,11 +87,11 @@ noticia = client.Noticia()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `str` | Yes |  |
-| `image` | `str` | Yes |  |
-| `link` | `str` | Yes |  |
-| `site_icon` | `str` | Yes |  |
-| `title` | `str` | Yes |  |
+| `description` | `str` | Yes | Description or summary of the news article |
+| `image` | `str` | Yes | URL of the article image |
+| `link` | `str` | Yes | URL of the full news article |
+| `site_icon` | `str` | Yes | URL of the site icon |
+| `title` | `str` | Yes | Title of the news article |
 
 ### Operations
 

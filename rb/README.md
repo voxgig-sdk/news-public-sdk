@@ -237,11 +237,11 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `description` |  |
-| `image` |  |
-| `link` |  |
-| `site_icon` |  |
-| `title` |  |
+| `description` | Description or summary of the news article |
+| `image` | URL of the article image |
+| `link` | URL of the full news article |
+| `site_icon` | URL of the site icon |
+| `title` | Title of the news article |
 
 Operations: List.
 
@@ -266,11 +266,11 @@ Create an instance: `noticia = client.Noticia`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `String` |  |
-| `image` | `String` |  |
-| `link` | `String` |  |
-| `site_icon` | `String` |  |
-| `title` | `String` |  |
+| `description` | `String` | Description or summary of the news article |
+| `image` | `String` | URL of the article image |
+| `link` | `String` | URL of the full news article |
+| `site_icon` | `String` | URL of the site icon |
+| `title` | `String` | Title of the news article |
 
 #### Example: List
 

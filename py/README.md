@@ -243,11 +243,11 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `description` |  |
-| `image` |  |
-| `link` |  |
-| `site_icon` |  |
-| `title` |  |
+| `description` | Description or summary of the news article |
+| `image` | URL of the article image |
+| `link` | URL of the full news article |
+| `site_icon` | URL of the site icon |
+| `title` | Title of the news article |
 
 Operations: List.
 
@@ -272,11 +272,11 @@ Create an instance: `noticia = client.Noticia()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `str` |  |
-| `image` | `str` |  |
-| `link` | `str` |  |
-| `site_icon` | `str` |  |
-| `title` | `str` |  |
+| `description` | `str` | Description or summary of the news article |
+| `image` | `str` | URL of the article image |
+| `link` | `str` | URL of the full news article |
+| `site_icon` | `str` | URL of the site icon |
+| `title` | `str` | Title of the news article |
 
 #### Example: List
 

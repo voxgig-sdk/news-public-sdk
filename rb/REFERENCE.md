@@ -93,11 +93,11 @@ noticia = client.Noticia
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `String` | Yes |  |
-| `image` | `String` | Yes |  |
-| `link` | `String` | Yes |  |
-| `site_icon` | `String` | Yes |  |
-| `title` | `String` | Yes |  |
+| `description` | `String` | Yes | Description or summary of the news article |
+| `image` | `String` | Yes | URL of the article image |
+| `link` | `String` | Yes | URL of the full news article |
+| `site_icon` | `String` | Yes | URL of the site icon |
+| `title` | `String` | Yes | Title of the news article |
 
 ### Operations
 

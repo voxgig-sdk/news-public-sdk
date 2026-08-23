@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "NewsPublic",
+            "slug": "news-public",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -51,26 +54,31 @@ def make_config():
           {
             "name": "description",
             "req": True,
+            "short": "Description or summary of the news article",
             "type": "`$STRING`",
           },
           {
             "name": "image",
             "req": True,
+            "short": "URL of the article image",
             "type": "`$STRING`",
           },
           {
             "name": "link",
             "req": True,
+            "short": "URL of the full news article",
             "type": "`$STRING`",
           },
           {
             "name": "site_icon",
             "req": True,
+            "short": "URL of the site icon",
             "type": "`$STRING`",
           },
           {
             "name": "title",
             "req": True,
+            "short": "Title of the news article",
             "type": "`$STRING`",
           },
         ],

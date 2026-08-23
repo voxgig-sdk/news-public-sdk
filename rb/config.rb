@@ -19,6 +19,9 @@ module NewsPublicConfig
     {
       "main" => {
         "name" => "NewsPublic",
+        "slug" => "news-public",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -42,26 +45,31 @@ module NewsPublicConfig
             {
               "name" => "description",
               "req" => true,
+              "short" => "Description or summary of the news article",
               "type" => "`$STRING`",
             },
             {
               "name" => "image",
               "req" => true,
+              "short" => "URL of the article image",
               "type" => "`$STRING`",
             },
             {
               "name" => "link",
               "req" => true,
+              "short" => "URL of the full news article",
               "type" => "`$STRING`",
             },
             {
               "name" => "site_icon",
               "req" => true,
+              "short" => "URL of the site icon",
               "type" => "`$STRING`",
             },
             {
               "name" => "title",
               "req" => true,
+              "short" => "Title of the news article",
               "type" => "`$STRING`",
             },
           ],

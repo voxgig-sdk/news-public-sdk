@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'NewsPublic',
+        slug: "news-public",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -57,26 +68,31 @@ class Config {
         {
           "name": "description",
           "req": true,
+          "short": "Description or summary of the news article",
           "type": "`$STRING`"
         },
         {
           "name": "image",
           "req": true,
+          "short": "URL of the article image",
           "type": "`$STRING`"
         },
         {
           "name": "link",
           "req": true,
+          "short": "URL of the full news article",
           "type": "`$STRING`"
         },
         {
           "name": "site_icon",
           "req": true,
+          "short": "URL of the site icon",
           "type": "`$STRING`"
         },
         {
           "name": "title",
           "req": true,
+          "short": "Title of the news article",
           "type": "`$STRING`"
         }
       ],

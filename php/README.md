@@ -247,11 +247,11 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `description` |  |
-| `image` |  |
-| `link` |  |
-| `site_icon` |  |
-| `title` |  |
+| `description` | Description or summary of the news article |
+| `image` | URL of the article image |
+| `link` | URL of the full news article |
+| `site_icon` | URL of the site icon |
+| `title` | Title of the news article |
 
 Operations: List.
 
@@ -276,11 +276,11 @@ Create an instance: `$noticia = $client->Noticia();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `string` |  |
-| `image` | `string` |  |
-| `link` | `string` |  |
-| `site_icon` | `string` |  |
-| `title` | `string` |  |
+| `description` | `string` | Description or summary of the news article |
+| `image` | `string` | URL of the article image |
+| `link` | `string` | URL of the full news article |
+| `site_icon` | `string` | URL of the site icon |
+| `title` | `string` | Title of the news article |
 
 #### Example: List
 
