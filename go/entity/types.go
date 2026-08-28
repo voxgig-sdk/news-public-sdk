@@ -23,11 +23,8 @@ type Noticia struct {
 
 // NoticiaListMatch is the typed request payload for Noticia.ListTyped.
 type NoticiaListMatch struct {
-	Description *string `json:"description,omitempty"`
-	Image *string `json:"image,omitempty"`
-	Link *string `json:"link,omitempty"`
-	SiteIcon *string `json:"site_icon,omitempty"`
-	Title *string `json:"title,omitempty"`
+	All *bool `json:"all,omitempty"`
+	Limit *int `json:"limit,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

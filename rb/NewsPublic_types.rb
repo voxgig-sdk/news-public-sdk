@@ -35,26 +35,14 @@ Noticia = Struct.new(
 
 # Request payload for Noticia#list.
 #
-# @!attribute [rw] description
-#   @return [String, nil]
+# @!attribute [rw] all
+#   @return [Boolean, nil]
 #
-# @!attribute [rw] image
-#   @return [String, nil]
-#
-# @!attribute [rw] link
-#   @return [String, nil]
-#
-# @!attribute [rw] site_icon
-#   @return [String, nil]
-#
-# @!attribute [rw] title
-#   @return [String, nil]
+# @!attribute [rw] limit
+#   @return [Integer, nil]
 NoticiaListMatch = Struct.new(
-  :description,
-  :image,
-  :link,
-  :site_icon,
-  :title,
+  :all,
+  :limit,
   keyword_init: true
 )
 

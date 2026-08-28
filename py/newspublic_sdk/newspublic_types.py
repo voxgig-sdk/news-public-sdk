@@ -25,8 +25,5 @@ class Noticia(TypedDict):
 
 
 class NoticiaListMatch(TypedDict, total=False):
-    description: str
-    image: str
-    link: str
-    site_icon: str
-    title: str
+    all: bool
+    limit: int

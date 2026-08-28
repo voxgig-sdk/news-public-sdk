@@ -14,10 +14,7 @@ export interface Noticia {
 }
 
 export interface NoticiaListMatch {
-  description?: string
-  image?: string
-  link?: string
-  site_icon?: string
-  title?: string
+  all?: boolean
+  limit?: number
 }
 

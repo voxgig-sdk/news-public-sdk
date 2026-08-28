@@ -25,10 +25,7 @@ class Noticia
 /** Request payload for Noticia#list. */
 class NoticiaListMatch
 {
-    public ?string $description = null;
-    public ?string $image = null;
-    public ?string $link = null;
-    public ?string $site_icon = null;
-    public ?string $title = null;
+    public ?bool $all = null;
+    public ?int $limit = null;
 }
 
