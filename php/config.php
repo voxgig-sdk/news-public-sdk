@@ -64,18 +64,21 @@ class NewsPublicConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uri',
               'name' => 'image',
               'req' => true,
               'short' => 'URL of the article image',
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uri',
               'name' => 'link',
               'req' => true,
               'short' => 'URL of the full news article',
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uri',
               'name' => 'site_icon',
               'req' => true,
               'short' => 'URL of the site icon',
@@ -116,9 +119,13 @@ class NewsPublicConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api/noticias/',
-                  'parts' => [
-                    'api',
-                    'noticias',
+                  'segments' => [
+                    [
+                      'lit' => 'api',
+                    ],
+                    [
+                      'lit' => 'noticias',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -129,6 +136,10 @@ class NewsPublicConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'api',
+                    'noticias',
                   ],
                 ],
               ],

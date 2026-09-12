@@ -38,18 +38,21 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "image",
             ["req"] = true,
             ["short"] = "URL of the article image",
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "link",
             ["req"] = true,
             ["short"] = "URL of the full news article",
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "site_icon",
             ["req"] = true,
             ["short"] = "URL of the site icon",
@@ -90,9 +93,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/noticias/",
-                ["parts"] = {
-                  "api",
-                  "noticias",
+                ["segments"] = {
+                  {
+                    ["lit"] = "api",
+                  },
+                  {
+                    ["lit"] = "noticias",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -103,6 +110,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "api",
+                  "noticias",
                 },
               },
             },
