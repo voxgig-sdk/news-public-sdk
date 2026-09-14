@@ -105,7 +105,7 @@ local results, err = client:Noticia():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/news-public` | publish pending — [install from git tag](https://github.com/voxgig-sdk/news-public-sdk/releases) |
+| TypeScript | `@voxgig-sdk/news-public-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/news-public-sdk/releases) |
 | Python | `voxgig-sdk-news-public` | publish pending — [install from git tag](https://github.com/voxgig-sdk/news-public-sdk/releases) |
 | PHP | `voxgig-sdk/news-public` | publish pending — [install from git tag](https://github.com/voxgig-sdk/news-public-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/news-public-sdk/go` | `go get github.com/voxgig-sdk/news-public-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Noticia():list()
 ### TypeScript
 
 ```ts
-import { NewsPublicSDK } from '@voxgig-sdk/news-public'
+import { NewsPublicSDK } from '@voxgig-sdk/news-public-sdk'
 
 const client = new NewsPublicSDK()
 

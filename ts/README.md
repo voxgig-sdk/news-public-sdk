@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { NewsPublicSDK } from '@voxgig-sdk/news-public'
+import { NewsPublicSDK } from '@voxgig-sdk/news-public-sdk'
 
 const client = new NewsPublicSDK()
 ```
@@ -411,7 +411,7 @@ news-public/
 Import the SDK from the package root:
 
 ```ts
-import { NewsPublicSDK } from '@voxgig-sdk/news-public'
+import { NewsPublicSDK } from '@voxgig-sdk/news-public-sdk'
 ```
 
 ### Entity state
