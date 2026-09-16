@@ -1,12 +1,18 @@
 # NewsPublic SDK feature factory
 
 from newspublic_sdk.feature.base_feature import NewsPublicBaseFeature
+from newspublic_sdk.feature.ratelimit_feature import NewsPublicRatelimitFeature
+from newspublic_sdk.feature.retry_feature import NewsPublicRetryFeature
 from newspublic_sdk.feature.test_feature import NewsPublicTestFeature
+from newspublic_sdk.feature.timeout_feature import NewsPublicTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: NewsPublicBaseFeature(),
+    "ratelimit": lambda: NewsPublicRatelimitFeature(),
+    "retry": lambda: NewsPublicRetryFeature(),
     "test": lambda: NewsPublicTestFeature(),
+    "timeout": lambda: NewsPublicTimeoutFeature(),
 }
 
 

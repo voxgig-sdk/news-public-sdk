@@ -4,7 +4,10 @@ declare(strict_types=1);
 // NewsPublic SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class NewsPublicFeatures
@@ -14,8 +17,14 @@ class NewsPublicFeatures
         switch ($name) {
             case "base":
                 return new NewsPublicBaseFeature();
+            case "ratelimit":
+                return new NewsPublicRatelimitFeature();
+            case "retry":
+                return new NewsPublicRetryFeature();
             case "test":
                 return new NewsPublicTestFeature();
+            case "timeout":
+                return new NewsPublicTimeoutFeature();
             default:
                 return new NewsPublicBaseFeature();
         }
@@ -31,7 +40,10 @@ class NewsPublicFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

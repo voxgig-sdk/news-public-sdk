@@ -40,6 +40,8 @@ const node_path_1 = __importDefault(require("node:path"));
 const Fs = __importStar(require("node:fs"));
 const node_test_1 = require("node:test");
 const node_assert_1 = __importDefault(require("node:assert"));
+const live_runner_1 = require("../../live-runner");
+const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
 // AFTER the imports on purpose: TypeScript hoists `import` above any
@@ -59,16 +61,12 @@ const utility_1 = require("../../utility");
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.NEWS_PUBLIC_TEST_LIVE;
         for (const op of ['list']) {
-            if ((0, utility_1.maybeSkipControl)(t, 'entityOp', 'noticia.' + op, live))
+            if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'noticia.' + op, live))
                 return;
         }
         const setup = basicSetup();
-        // The basic flow consumes synthetic IDs and field values from the
-        // fixture (entity TestData.json). Those don't exist on the live API.
-        // Skip live runs unless the user provided a real ENTID env override.
-        if (setup.syntheticOnly) {
-            t.skip('live entity test uses synthetic IDs from fixture — set NEWS_PUBLIC_TEST_NOTICIA_ENTID JSON to run live');
-            return;
+        if (setup.live) {
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [{ "active": true, "name": "description", "req": true, "short": "Description or summary of the news article", "type": "`$STRING`", "index$": 0 }, { "active": true, "format": "uri", "name": "image", "req": true, "short": "URL of the article image", "type": "`$STRING`", "index$": 1 }, { "active": true, "format": "uri", "name": "link", "req": true, "short": "URL of the full news article", "type": "`$STRING`", "index$": 2 }, { "active": true, "format": "uri", "name": "site_icon", "req": true, "short": "URL of the site icon", "type": "`$STRING`", "index$": 3 }, { "active": true, "name": "title", "req": true, "short": "Title of the news article", "type": "`$STRING`", "index$": 4 }], "name": "noticia", "op": { "list": { "input": "data", "name": "list", "points": [{ "active": true, "args": { "query": [{ "active": true, "example": true, "kind": "query", "name": "all", "orig": "all", "reqd": false, "type": "`$BOOLEAN`", "index$": 0 }, { "active": true, "example": 10, "kind": "query", "name": "limit", "orig": "limit", "reqd": false, "type": "`$INTEGER`", "index$": 1 }] }, "contract": { "id": "GET /api/noticias/", "json": "{\"operationId\":\"getNewsArticles\",\"parameters\":[{\"description\":\"Set to 'true' to retrieve all news articles\",\"in\":\"query\",\"name\":\"all\",\"required\":false,\"schema\":{\"example\":true,\"type\":\"boolean\"}},{\"description\":\"Limit the number of news articles returned\",\"in\":\"query\",\"name\":\"limit\",\"required\":false,\"schema\":{\"example\":10,\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"success\":{\"summary\":\"Example response with news articles\",\"value\":[{\"description\":\"Descripción de la noticia\",\"image\":\"https://example.com/image.jpg\",\"link\":\"https://example.com/article\",\"site_icon\":\"https://example.com/icon.png\",\"title\":\"Título de la noticia\"}]}},\"schema\":{\"items\":{\"description\":\"A news article object containing details about a news story\",\"properties\":{\"description\":{\"description\":\"Description or summary of the news article\",\"example\":\"Descripción de la noticia\",\"type\":\"string\"},\"image\":{\"description\":\"URL of the article image\",\"example\":\"https://example.com/image.jpg\",\"format\":\"uri\",\"type\":\"string\"},\"link\":{\"description\":\"URL of the full news article\",\"example\":\"https://example.com/article\",\"format\":\"uri\",\"type\":\"string\"},\"site_icon\":{\"description\":\"URL of the site icon\",\"example\":\"https://example.com/icon.png\",\"format\":\"uri\",\"type\":\"string\"},\"title\":{\"description\":\"Title of the news article\",\"example\":\"Título de la noticia\",\"type\":\"string\"}},\"required\":[\"title\",\"description\",\"site_icon\",\"link\",\"image\"],\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response with news articles\"},\"400\":{\"description\":\"Bad request - invalid parameters\"},\"500\":{\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/api/noticias/", "segments": [{ "lit": "api" }, { "lit": "noticias" }], "select": { "exist": ["all", "limit"] }, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "noticia", "name__orig": "noticia", "Name": "Noticia", "name_": "noticia", "name-": "noticia", "NAME": "NOTICIA", "index$": 0 }, { "active": true, "entity": "noticia", "key$": "BasicNoticiaFlow", "kind": "basic", "name": "BasicNoticiaFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": {}, "match": {}, "op": "list", "spec": [], "valid": [{ "apply": "ItemExists", "def": { "ref": "noticia_ref01" } }], "index$": 0 }] }, 'Noticia');
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -101,12 +99,6 @@ function basicSetup(extra) {
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
             }]
     });
-    // Detect whether the user provided a real ENTID JSON via env var. The
-    // basic flow consumes synthetic IDs from the fixture file; without an
-    // override those synthetic IDs reach the live API and 4xx. Surface this
-    // to the test so it can skip rather than fail.
-    const idmapEnvVal = process.env['NEWS_PUBLIC_TEST_NOTICIA_ENTID'];
-    const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{');
     const env = (0, utility_1.envOverride)({
         'NEWS_PUBLIC_TEST_NOTICIA_ENTID': idmap,
         'NEWS_PUBLIC_TEST_LIVE': 'FALSE',
@@ -114,7 +106,13 @@ function basicSetup(extra) {
     });
     idmap = env['NEWS_PUBLIC_TEST_NOTICIA_ENTID'];
     const live = 'TRUE' === env.NEWS_PUBLIC_TEST_LIVE;
+    const transport = (0, live_runner_1.createLiveTransport)();
     if (live) {
+        const rawIds = process.env['NEWS_PUBLIC_TEST_NOTICIA_ENTID'];
+        idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {};
+        if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+            throw new Error('Live ENTID must be a JSON object');
+        }
         client = new __1.NewsPublicSDK(merge([
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
@@ -125,7 +123,8 @@ function basicSetup(extra) {
             // argument at all - so a bare 'extra' silently discarded the apikey
             // and server values above and handed the SDK undefined. Harmless
             // while there was nothing in that object; not harmless now.
-            extra || {}
+            extra || {},
+            { system: { fetch: transport.fetch } }
         ]));
     }
     const setup = {
@@ -137,7 +136,7 @@ function basicSetup(extra) {
         data: entityData,
         explain: 'TRUE' === env.NEWS_PUBLIC_TEST_EXPLAIN,
         live,
-        syntheticOnly: live && !idmapOverridden,
+        transport,
         now: Date.now(),
     };
     return setup;
