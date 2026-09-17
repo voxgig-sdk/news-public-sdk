@@ -105,12 +105,12 @@ local results, err = client:Noticia():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/news-public-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/news-public-sdk/releases) |
-| Python | `voxgig-sdk-news-public` | publish pending — [install from git tag](https://github.com/voxgig-sdk/news-public-sdk/releases) |
-| PHP | `voxgig-sdk/news-public` | publish pending — [install from git tag](https://github.com/voxgig-sdk/news-public-sdk/releases) |
+| TypeScript | `@voxgig-sdk/news-public-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/news-public-sdk/tags) |
+| Python | `voxgig-sdk-news-public` | publish pending — [install from git tag](https://github.com/voxgig-sdk/news-public-sdk/tags) |
+| PHP | `voxgig-sdk/news-public` | publish pending — [install from git tag](https://github.com/voxgig-sdk/news-public-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/news-public-sdk/go` | `go get github.com/voxgig-sdk/news-public-sdk/go@latest` |
-| Ruby | `voxgig-sdk-news-public` | publish pending — [install from git tag](https://github.com/voxgig-sdk/news-public-sdk/releases) |
-| Lua | `voxgig-sdk-news-public` | publish pending — [install from git tag](https://github.com/voxgig-sdk/news-public-sdk/releases) |
+| Ruby | `voxgig-sdk-news-public` | publish pending — [install from git tag](https://github.com/voxgig-sdk/news-public-sdk/tags) |
+| Lua | `voxgig-sdk-news-public` | publish pending — [install from git tag](https://github.com/voxgig-sdk/news-public-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/news-public-sdk/go-cli` | `go install github.com/voxgig-sdk/news-public-sdk/go-cli/cmd/news-public@latest` |
 | Go MCP server | `github.com/voxgig-sdk/news-public-sdk/go-mcp` | `go get github.com/voxgig-sdk/news-public-sdk/go-mcp@latest` |
 
