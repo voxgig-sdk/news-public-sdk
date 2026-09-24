@@ -113,36 +113,41 @@ class NewsPublicConfig
           'fields' => [
             [
               'name' => 'description',
+              'title' => 'Description',
+              'type' => '`$STRING`',
               'req' => true,
               'short' => 'Description or summary of the news article',
-              'type' => '`$STRING`',
             ],
             [
-              'format' => 'uri',
               'name' => 'image',
+              'title' => 'Image',
+              'type' => '`$STRING`',
               'req' => true,
               'short' => 'URL of the article image',
-              'type' => '`$STRING`',
+              'format' => 'uri',
             ],
             [
-              'format' => 'uri',
               'name' => 'link',
+              'title' => 'Link',
+              'type' => '`$STRING`',
               'req' => true,
               'short' => 'URL of the full news article',
-              'type' => '`$STRING`',
+              'format' => 'uri',
             ],
             [
-              'format' => 'uri',
               'name' => 'site_icon',
+              'title' => 'Site Icon',
+              'type' => '`$STRING`',
               'req' => true,
               'short' => 'URL of the site icon',
-              'type' => '`$STRING`',
+              'format' => 'uri',
             ],
             [
               'name' => 'title',
+              'title' => 'Title',
+              'type' => '`$STRING`',
               'req' => true,
               'short' => 'Title of the news article',
-              'type' => '`$STRING`',
             ],
           ],
           'name' => 'noticia',
@@ -152,24 +157,6 @@ class NewsPublicConfig
               'name' => 'list',
               'points' => [
                 [
-                  'args' => [
-                    'query' => [
-                      [
-                        'example' => true,
-                        'kind' => 'query',
-                        'name' => 'all',
-                        'orig' => 'all',
-                        'type' => '`$BOOLEAN`',
-                      ],
-                      [
-                        'example' => 10,
-                        'kind' => 'query',
-                        'name' => 'limit',
-                        'orig' => 'limit',
-                        'type' => '`$INTEGER`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api/noticias/',
@@ -181,19 +168,38 @@ class NewsPublicConfig
                       'lit' => 'noticias',
                     ],
                   ],
+                  'parts' => [
+                    'api',
+                    'noticias',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'all',
+                        'orig' => 'all',
+                        'type' => '`$BOOLEAN`',
+                        'kind' => 'query',
+                        'example' => true,
+                      ],
+                      [
+                        'name' => 'limit',
+                        'orig' => 'limit',
+                        'type' => '`$INTEGER`',
+                        'kind' => 'query',
+                        'example' => 10,
+                      ],
+                    ],
+                  ],
                   'select' => [
                     'exist' => [
                       'all',
                       'limit',
                     ],
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'parts' => [
-                    'api',
-                    'noticias',
                   ],
                 ],
               ],

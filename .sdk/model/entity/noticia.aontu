@@ -1,0 +1,106 @@
+# Entity: noticia
+
+main: kit: entity: noticia: {
+
+  alias: field: {}
+
+  fields: {
+    description: {
+      h: "Description"
+      n: "description"
+      r: true
+      sh: "Description or summary of the news article"
+      t: "`$STRING`"
+    }
+    image: {
+      fo: "uri"
+      h: "Image"
+      n: "image"
+      r: true
+      sh: "URL of the article image"
+      t: "`$STRING`"
+    }
+    link: {
+      fo: "uri"
+      h: "Link"
+      n: "link"
+      r: true
+      sh: "URL of the full news article"
+      t: "`$STRING`"
+    }
+    site_icon: {
+      fo: "uri"
+      h: "Site Icon"
+      n: "site_icon"
+      r: true
+      sh: "URL of the site icon"
+      t: "`$STRING`"
+    }
+    title: {
+      h: "Title"
+      n: "title"
+      r: true
+      sh: "Title of the news article"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "noticia"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /api/noticias/"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: true
+                k: "query"
+                n: "all"
+                or: "all"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: 10
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/noticias/"
+          q: {
+            exist: [
+              "all"
+              "limit"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "noticias"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

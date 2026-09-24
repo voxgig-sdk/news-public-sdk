@@ -16,12 +16,6 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS: Record<string, any[]> = {
   
 }
@@ -32,7 +26,6 @@ class Config {
   makeFeature(this: any, fn: string) {
     const fc = FEATURE_CLASS[fn]
     const fi = new fc()
-    // TODO: errors etc
     return fi
   }
 
@@ -139,36 +132,41 @@ class Config {
       "fields": [
         {
           "name": "description",
+          "title": "Description",
+          "type": "`$STRING`",
           "req": true,
-          "short": "Description or summary of the news article",
-          "type": "`$STRING`"
+          "short": "Description or summary of the news article"
         },
         {
-          "format": "uri",
           "name": "image",
+          "title": "Image",
+          "type": "`$STRING`",
           "req": true,
           "short": "URL of the article image",
-          "type": "`$STRING`"
+          "format": "uri"
         },
         {
-          "format": "uri",
           "name": "link",
+          "title": "Link",
+          "type": "`$STRING`",
           "req": true,
           "short": "URL of the full news article",
-          "type": "`$STRING`"
+          "format": "uri"
         },
         {
-          "format": "uri",
           "name": "site_icon",
+          "title": "Site Icon",
+          "type": "`$STRING`",
           "req": true,
           "short": "URL of the site icon",
-          "type": "`$STRING`"
+          "format": "uri"
         },
         {
           "name": "title",
+          "title": "Title",
+          "type": "`$STRING`",
           "req": true,
-          "short": "Title of the news article",
-          "type": "`$STRING`"
+          "short": "Title of the news article"
         }
       ],
       "name": "noticia",
@@ -178,24 +176,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "example": true,
-                    "kind": "query",
-                    "name": "all",
-                    "orig": "all",
-                    "type": "`$BOOLEAN`"
-                  },
-                  {
-                    "example": 10,
-                    "kind": "query",
-                    "name": "limit",
-                    "orig": "limit",
-                    "type": "`$INTEGER`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/api/noticias/",
@@ -207,20 +187,39 @@ class Config {
                   "lit": "noticias"
                 }
               ],
+              "parts": [
+                "api",
+                "noticias"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "all",
+                    "orig": "all",
+                    "type": "`$BOOLEAN`",
+                    "kind": "query",
+                    "example": true
+                  },
+                  {
+                    "name": "limit",
+                    "orig": "limit",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 10
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "all",
                   "limit"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "api",
-                "noticias"
-              ]
+              }
             }
           ]
         }

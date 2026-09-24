@@ -116,36 +116,41 @@ def make_config():
         "fields": [
           {
             "name": "description",
+            "title": "Description",
+            "type": "`$STRING`",
             "req": True,
             "short": "Description or summary of the news article",
-            "type": "`$STRING`",
           },
           {
-            "format": "uri",
             "name": "image",
+            "title": "Image",
+            "type": "`$STRING`",
             "req": True,
             "short": "URL of the article image",
-            "type": "`$STRING`",
+            "format": "uri",
           },
           {
-            "format": "uri",
             "name": "link",
+            "title": "Link",
+            "type": "`$STRING`",
             "req": True,
             "short": "URL of the full news article",
-            "type": "`$STRING`",
+            "format": "uri",
           },
           {
-            "format": "uri",
             "name": "site_icon",
+            "title": "Site Icon",
+            "type": "`$STRING`",
             "req": True,
             "short": "URL of the site icon",
-            "type": "`$STRING`",
+            "format": "uri",
           },
           {
             "name": "title",
+            "title": "Title",
+            "type": "`$STRING`",
             "req": True,
             "short": "Title of the news article",
-            "type": "`$STRING`",
           },
         ],
         "name": "noticia",
@@ -155,24 +160,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": True,
-                      "kind": "query",
-                      "name": "all",
-                      "orig": "all",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": 10,
-                      "kind": "query",
-                      "name": "limit",
-                      "orig": "limit",
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/api/noticias/",
@@ -184,20 +171,39 @@ def make_config():
                     "lit": "noticias",
                   },
                 ],
+                "parts": [
+                  "api",
+                  "noticias",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "all",
+                      "orig": "all",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": True,
+                    },
+                    {
+                      "name": "limit",
+                      "orig": "limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 10,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "all",
                     "limit",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "api",
-                  "noticias",
-                ],
               },
             ],
           },

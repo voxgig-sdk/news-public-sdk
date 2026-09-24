@@ -43,7 +43,7 @@ local noticias, err = client:Noticia():list()
 if err then error(err) end
 
 for _, item in ipairs(noticias) do
-  print(item["description"])
+  print(item)
 end
 ```
 

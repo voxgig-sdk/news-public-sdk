@@ -1,7 +1,7 @@
 // Typed models for the NewsPublic SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,11 +14,6 @@ import (
 
 // Noticia is the typed data model for the noticia entity.
 type Noticia struct {
-	Description string `json:"description"`
-	Image string `json:"image"`
-	Link string `json:"link"`
-	SiteIcon string `json:"site_icon"`
-	Title string `json:"title"`
 }
 
 // NoticiaListMatch is the typed request payload for Noticia.ListTyped.

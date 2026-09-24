@@ -19,7 +19,6 @@ import type {
   NoticiaListMatch,
 } from '../NewsPublicTypes'
 
-// TODO: needs Entity superclass
 class NoticiaEntity extends NewsPublicEntityBase<Noticia> {
 
   constructor(client: NewsPublicSDK, entopts: any) {

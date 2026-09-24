@@ -91,36 +91,41 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "description",
+						"title": "Description",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Description or summary of the news article",
-						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "image",
+						"title": "Image",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "URL of the article image",
-						"type": "`$STRING`",
+						"format": "uri",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "link",
+						"title": "Link",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "URL of the full news article",
-						"type": "`$STRING`",
+						"format": "uri",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "site_icon",
+						"title": "Site Icon",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "URL of the site icon",
-						"type": "`$STRING`",
+						"format": "uri",
 					},
 					map[string]any{
 						"name": "title",
+						"title": "Title",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Title of the news article",
-						"type": "`$STRING`",
 					},
 				},
 				"name": "noticia",
@@ -130,24 +135,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": true,
-											"kind": "query",
-											"name": "all",
-											"orig": "all",
-											"type": "`$BOOLEAN`",
-										},
-										map[string]any{
-											"example": 10,
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/noticias/",
@@ -159,19 +146,38 @@ func MakeConfig() map[string]any {
 										"lit": "noticias",
 									},
 								},
+								"parts": []any{
+									"api",
+									"noticias",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "all",
+											"orig": "all",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+											"example": true,
+										},
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 10,
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"all",
 										"limit",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"api",
-									"noticias",
 								},
 							},
 						},
