@@ -14,7 +14,7 @@ Metadata kindly supplied by [www.freepublicapis.com](https://www.freepublicapis.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI with an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
 
-> **Features:** `undefined`, `undefined`, `undefined`, `undefined` — opt-in,
+> **Features:** `ratelimit`, `retry`, `test`, `timeout` — opt-in,
 > inactive until switched on, and configured per client. See the Features
 > section of any SDK README below for what each one does.
 
@@ -105,12 +105,12 @@ local results, err = client:Noticia():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/news-public-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/news-public-sdk/tags) |
-| Python | `voxgig-sdk-news-public-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/news-public-sdk/tags) |
-| PHP | `voxgig-sdk/news-public-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/news-public-sdk/tags) |
+| TypeScript | `@voxgig-sdk/news-public-sdk` | publish pending — [install from source](ts/README.md#install) |
+| Python | `voxgig-sdk-news-public-sdk` | publish pending — [install from source](py/README.md#install) |
+| PHP | `voxgig-sdk/news-public-sdk` | publish pending — [install from source](php/README.md#install) |
 | Golang | `github.com/voxgig-sdk/news-public-sdk/go` | `go get github.com/voxgig-sdk/news-public-sdk/go@latest` |
-| Ruby | `voxgig-sdk-news-public-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/news-public-sdk/tags) |
-| Lua | `voxgig-sdk-news-public-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/news-public-sdk/tags) |
+| Ruby | `voxgig-sdk-news-public-sdk` | publish pending — [install from source](rb/README.md#install) |
+| Lua | `voxgig-sdk-news-public-sdk` | publish pending — [install from source](lua/README.md#install) |
 | Go CLI | `github.com/voxgig-sdk/news-public-sdk/go-cli` | `go install github.com/voxgig-sdk/news-public-sdk/go-cli/cmd/news-public@latest` |
 | Go MCP server | `github.com/voxgig-sdk/news-public-sdk/go-mcp` | `go get github.com/voxgig-sdk/news-public-sdk/go-mcp@latest` |
 

@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 NewsPublicUtility::setRegistrar(function (NewsPublicUtility $u): void {
     $u->clean = [NewsPublicClean::class, 'call'];
+    $u->clean_add = [NewsPublicClean::class, 'add'];
+    $u->clean_explain = [NewsPublicDone::class, 'clean_explain'];
     $u->done = [NewsPublicDone::class, 'call'];
     $u->make_error = [NewsPublicMakeError::class, 'call'];
     $u->feature_add = [NewsPublicFeatureAdd::class, 'call'];

@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 NewsPublicUtility.registrar = ->(u) {
   u.clean = NewsPublicUtilities::Clean
+  u.clean_add = NewsPublicUtilities::CleanAdd
+  u.clean_explain = NewsPublicUtilities::CleanExplain
   u.done = NewsPublicUtilities::Done
   u.make_error = NewsPublicUtilities::MakeError
   u.feature_add = NewsPublicUtilities::FeatureAdd
