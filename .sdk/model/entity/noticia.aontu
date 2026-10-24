@@ -78,11 +78,9 @@ main: kit: entity: noticia: {
           }
           m: "GET"
           o: "/api/noticias/"
-          q: {
-            exist: [
-              "all"
-              "limit"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

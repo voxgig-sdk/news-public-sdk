@@ -93,6 +93,7 @@ class NewsPublicConfig
           ],
           'optspec' => [
             'clearTimer' => '`$FUNCTION`',
+            'now' => '`$FUNCTION`',
             'setTimer' => '`$FUNCTION`',
           ],
           'strict' => false,
@@ -195,11 +196,10 @@ class NewsPublicConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'all',
-                      'limit',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],

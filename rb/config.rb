@@ -79,6 +79,7 @@ module NewsPublicConfig
           },
           "optspec" => {
             "clearTimer" => "`$FUNCTION`",
+            "now" => "`$FUNCTION`",
             "setTimer" => "`$FUNCTION`",
           },
           "strict" => false,
@@ -181,11 +182,10 @@ module NewsPublicConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "all",
-                      "limit",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],

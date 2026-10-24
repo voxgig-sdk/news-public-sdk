@@ -20,9 +20,23 @@ const PLAN = [
             "limit": 10
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "all",
             "limit"
+        ],
+        "queryArgs": [
+            {
+                "name": "all",
+                "wire": "all"
+            },
+            {
+                "name": "limit",
+                "wire": "limit"
+            }
         ],
         "auth": null,
         "status": 200,

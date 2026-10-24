@@ -3,5 +3,17 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "Description or summary of the news article",
+      "Production server",
+      "Successful response with news articles",
+      "This API provides access to the latest news articles, allowing users to fetch and retrieve news data programmatically. It is built using Python REST Framework and is available for public use.",
+      "Title of the news article",
+      "URL of the article image",
+      "URL of the full news article",
+      "URL of the site icon"
+    ]
+  }
 }

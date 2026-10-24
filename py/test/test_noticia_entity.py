@@ -9,9 +9,35 @@ import pytest
 from newspublic_sdk.utility.voxgig_struct import voxgig_struct as vs
 from newspublic_sdk import NewsPublicSDK
 from newspublic_sdk.core import helpers
+from newspublic_sdk.config import shared_config
+from newspublic_sdk.feature.base_feature import NewsPublicBaseFeature
 
 _TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 from test import runner
+
+
+class _FailHook(NewsPublicBaseFeature):
+    def __init__(self):
+        super().__init__()
+        self.name = "failhook"
+        self.unexpected = 0
+
+    def init(self, ctx, options):
+        pass
+
+    def PreSpec(self, ctx):
+        raise RuntimeError("noticia hook failed")
+
+    def PreUnexpected(self, ctx):
+        self.unexpected += 1
+
+
+
+# main.kit.test.live.strict is true (the default is true): a live
+# request that fails, or a live test missing an input it needs,
+# fails the test.
+# An account with no record for a test to read skips it either way.
+LIVE_STRICT = True
 
 
 class TestNoticiaEntity:
@@ -55,6 +81,58 @@ class TestNoticiaEntity:
                     got.append(item)
             assert len(got) == 3
 
+    def test_should_report_a_failed_stream(self):
+        offline = {"net": {"offline": True}}
+        with pytest.raises(Exception, match="offline"):
+            list(NewsPublicSDK.test(offline, None).Noticia(None).stream("list", None, None))
+
+        quiet = {"ctrl": {"throw": False}}
+        list(NewsPublicSDK.test(offline, None).Noticia(None).stream("list", None, quiet))
+
+        if "rbac" in (shared_config().get("feature") or {}):
+            denied = NewsPublicSDK.test(
+                None, {"feature": {"rbac": {"active": True, "deny": True}}})
+            with pytest.raises(Exception) as err:
+                list(denied.Noticia(None).stream("list", None, None))
+            assert "rbac_denied" == getattr(err.value, "code", None)
+
+    def test_should_leave_the_callers_ctrl(self):
+        explain = {}
+        ctrl = {"explain": explain}
+        list(NewsPublicSDK.test(None, None).Noticia(None).stream("list", None, {"ctrl": ctrl}))
+        assert ["explain"] == list(ctrl.keys())
+        assert explain is ctrl["explain"] and 0 < len(explain)
+
+    def test_should_fire_pre_unexpected(self):
+        hook = _FailHook()
+        client = NewsPublicSDK({"feature": {"test": {"active": True}}, "extend": [hook]})
+        with pytest.raises(Exception, match="hook failed"):
+            client.Noticia(None).list(None, None)
+        assert 0 < hook.unexpected
+
+        fired = hook.unexpected
+        assert client.Noticia(None).list(None, {"throw": False}) is None
+        assert fired < hook.unexpected
+
+    def test_should_validate_each_listed_record(self):
+        if "validate" not in (shared_config().get("feature") or {}):
+            pytest.skip("feature not present in this SDK: validate")
+        opts = {"feature": {"validate": {"active": True, "request": False, "response": True}}}
+        listed = NewsPublicSDK.test({"entity": {"noticia": {"v1": {"description": "x", "image": "x", "link": "x", "site_icon": "x", "title": "x"}}}}, opts).Noticia(None).list(None, None)
+        assert ["v1"] == [ent.data_get().get("id") for ent in listed]
+        with pytest.raises(Exception) as err:
+            NewsPublicSDK.test({"entity": {"noticia": {"v1": {"description": 1, "image": "x", "link": "x", "site_icon": "x", "title": "x"}}}}, opts).Noticia(None).list(None, None)
+        assert "validate_failed" == getattr(err.value, "code", None)
+
+    def test_should_refuse_an_invalid_request(self):
+        if "validate" not in (shared_config().get("feature") or {}):
+            pytest.skip("feature not present in this SDK: validate")
+        client = NewsPublicSDK.test(
+            None, {"feature": {"validate": {"active": True}}})
+        with pytest.raises(Exception) as err:
+            client.Noticia(None).list({"all": "x"}, None)
+        assert "validate_failed" == getattr(err.value, "code", None)
+
     def test_should_run_basic_flow(self):
         setup = _noticia_basic_setup(None)
         # Per-op sdk-test-control.json skip — basic test exercises a flow with
@@ -66,11 +144,6 @@ class TestNoticiaEntity:
             if _skip:
                 pytest.skip(_reason or "skipped via sdk-test-control.json")
                 return
-        # The basic flow consumes synthetic IDs from the fixture. In live mode
-        # without an *_ENTID env override, those IDs hit the live API and 4xx.
-        if setup.get("synthetic_only"):
-            pytest.skip("live entity test uses synthetic IDs from fixture — "
-                        "set NEWS_PUBLIC_TEST_NOTICIA_ENTID JSON to run live")
         client = setup["client"]
 
         # Bootstrap entity data from existing test data.
@@ -93,7 +166,7 @@ def _noticia_basic_setup(extra):
     runner.load_env_local()
 
     entity_data_file = os.path.join(_TEST_DIR, "../../.sdk/test/entity/noticia/NoticiaTestData.json")
-    with open(entity_data_file, "r") as f:
+    with open(entity_data_file, "r", encoding="utf-8") as f:
         entity_data_source = f.read()
 
     entity_data = json.loads(entity_data_source)
@@ -114,9 +187,8 @@ def _noticia_basic_setup(extra):
         }
     )
 
-    # Detect ENTID env override before envOverride consumes it. When live
-    # mode is on without a real override, the basic test runs against synthetic
-    # IDs from the fixture and 4xx's. We surface this so the test can skip.
+    # Whether *_ENTID supplied the idmap, read before env_override consumes
+    # it: without it, the ids a live flow binds are the fixture's synthetic ones.
     _entid_env_raw = os.environ.get(
         "NEWS_PUBLIC_TEST_NOTICIA_ENTID")
     _idmap_overridden = _entid_env_raw is not None and _entid_env_raw.strip().startswith("{")
